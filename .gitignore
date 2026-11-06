@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+.env
+.env.*
+*.ipa
+*.p12
+*.mobileprovision
+private-health-data/
+*.health-export.json

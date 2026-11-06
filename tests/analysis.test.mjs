@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { analyse, inspectNight } from '../lib/analysis.mjs';
+import { buildScenario } from '../lib/scenarios.mjs';
+const now = new Date('2026-11-06T14:00:00+01:00');
+const run = name => analyse(buildScenario(name,now),now);
+test('sin reloj: no inventar una anomalía WASO',()=>assert.equal(run('no-watch').kind,'stale'));
+test('noche parcial: no inventar una anomalía WASO',()=>assert.equal(run('partial').kind,'invalid'));
+test('cobertura desconocida: no presumir que llevaba el reloj',()=>assert.equal(run('unknown').kind,'invalid'));
+test('una sola noche alta: observación, no alerta repetida',()=>assert.equal(run('single').kind,'single'));
+test('tres noches elevadas: patrón repetido',()=>assert.equal(run('pattern').kind,'pattern'));
+test('sin cambios, no generar alerta',()=>assert.equal(run('stable').kind,'stable'));
+test('sin sincronización no producir anomalía',()=>assert.equal(run('no-sync').kind,'stale'));
+test('valores absurdos quedan descartados',()=>assert.equal(inspectNight({date:'2026-11-05',wearCoverage:10,recordedMinutes:2000,sleepMinutes:1000,wasoMinutes:-5}).valid,false));
+test('sin reporte: respuesta segura',()=>assert.equal(analyse({},now).kind,'stale'));

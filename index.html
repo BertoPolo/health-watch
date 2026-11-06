@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1d25"><meta name="description" content="Pulso: simulador experimental de análisis de salud con control de calidad de datos para Amazfit.">
+<title>Pulso · Laboratorio de salud</title><link rel="icon" type="image/svg+xml" href="./assets/favicon.svg"><link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./styles.css"></head>
+<body><div class="page">
+<header class="site-header"><a class="brand" href="./" aria-label="Pulso inicio"><span class="brand-icon">◉</span><span>Pulso<small>HEALTH LAB / LABORATORIO DE SALUD</small></span></a><span class="top-chip"><i></i> Simulador · sin reloj conectado</span></header>
+<main><div class="heading"><div><span class="overline">HEALTH WATCH / ETAPA 01</span><h1>Un análisis que <em>comprueba los datos.</em></h1><p>Prueba cómo debería comportarse una alternativa a Zepp antes de conectarla al Amazfit Active 2.</p></div></div>
+<div class="workspace">
+<aside class="lab-panel" aria-label="Controles del simulador"><div class="lab-label"><span>01 / CONTROLES</span><span class="dot-orange">●</span></div><h2>Simular una situación</h2><p>Elige un caso. Los resultados se recalculan con los mismos criterios de calidad.</p><label class="field-label" for="scenario">Escenario de prueba</label><select id="scenario"></select><div id="scenario-description" class="scenario-info"></div><div class="rule"></div>
+<h3>Verificaciones automáticas</h3><div id="quality-checks" class="checks" aria-live="polite"></div>
+<div class="rule"></div><h3>Cómo probar en Windows</h3><p>Esta pantalla reproduce una interfaz de móvil. Usa el modo móvil de Chrome o Edge para probar otros tamaños. No se requiere un Mac.</p><p class="small">Los umbrales son experimentales. No constituyen consejo médico.</p></aside>
+<section class="simulator-stage" aria-label="Simulador de pantalla de teléfono">
+<div class="simulator-caption"><span>02 / VISTA MÓVIL</span><span>390 × 844 · aproximado</span></div>
+<div class="phone"><div class="phone-top"><span class="island"></span></div><div class="phone-content">
+<div class="phone-header"><span class="p-logo">◉ Pulso</span><span class="watch-status">● DEMO</span></div>
+<div class="phone-greeting"><span id="phone-date"></span><h2>Tu salud,<br>con contexto.</h2><p>No detectamos problemas donde faltan mediciones.</p></div>
+<div class="fake-warning">DATOS SINTÉTICOS · NO SON MEDICIONES REALES</div>
+<nav class="phone-tabs" aria-label="Secciones"><button class="tab active" data-tab="summary">Resumen</button><button class="tab" data-tab="sleep">Sueño</button><button class="tab" data-tab="journal">Diario</button></nav>
+<section class="phone-view active" id="view-summary">
+<div class="metrics"><div class="metric"><span>Sueño registrado</span><strong id="sleep-val">—</strong><small>última noche apta</small></div><div class="metric"><span>WASO</span><strong id="waso-val">—</strong><small>minutos despierto</small></div></div>
+<article class="insight" id="insight-card"><span class="insight-label" id="insight-grade">CALIDAD PRIMERO</span><h3 id="insight-title"></h3><p id="insight-detail"></p><div class="advice"><span>RECOMENDACIÓN</span><p id="insight-advice"></p></div></article>
+<div class="mini-heading"><h3>Origen y vigencia</h3><span>Verificable</span></div><div class="data-box"><div><span>Fuente</span><strong>Simulador</strong></div><div><span>Última sincronización simulada</span><strong id="last-sync"></strong></div><div><span>Noches válidas</span><strong id="valid-nights"></strong></div></div>
+</section>
+<section class="phone-view" id="view-sleep"><div class="mini-heading"><h3>Últimas noches</h3><span>WASO / min</span></div><div id="bars" class="bars" aria-label="Barras de WASO por noche"></div><p class="chart-note">Las barras grises representan mediciones excluidas del análisis. No se infiere que una noche haya sido buena ni mala cuando faltan datos.</p><div class="data-box"><div><span>Referencia calculada</span><strong id="baseline"></strong></div><div><span>Filtro mínimo</span><strong>80 % cobertura*</strong></div></div><p class="small">*Cobertura de prueba. En la conexión real debe verificarse que el reloj proporciona esta señal.</p></section>
+<section class="phone-view" id="view-journal"><h3>Diario de sueño</h3><p class="chart-note">Tu percepción complementa los sensores; las notas quedan solo en este navegador.</p><form id="journal-form"><label for="journal-note">¿Qué ocurrió anoche?</label><textarea id="journal-note" rows="4" maxlength="500" placeholder="Despertares recordados, café, estrés, sensaciones…"></textarea><button class="primary-btn" type="submit">Guardar nota local</button></form><p id="journal-status" role="status"></p><div id="journal-entries"></div></section>
+</div><div class="phone-footer">Pulso <span>·</span> Laboratorio de análisis <span>·</span> v0.2</div></div>
+</section>
+<aside class="audit-panel"><div class="lab-label">03 / DIAGNÓSTICO</div><h2>Por qué se muestra ese resultado</h2><div id="audit" class="audit-items" aria-live="polite"></div><div class="rule"></div><div class="info-plain"><strong>Próximo objetivo</strong><p>Conectar el reloj directamente mediante Bluetooth desde una aplicación nativa para iOS. Aún no implementado.</p><a href="https://github.com/BertoPolo/health-watch">Código en GitHub ↗</a></div></aside>
+</div></main><footer class="site-footer">Proyecto experimental sin diagnósticos médicos. <span>No es Zepp ni está afiliado a Amazfit.</span></footer></div><script type="module" src="./src/app.mjs"></script></body></html>
